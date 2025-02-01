@@ -21,3 +21,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "Compose with Sokect"
 include(":app")
+include(":domain")
+include(":data")
+include(":presentation")
