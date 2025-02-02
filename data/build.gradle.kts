@@ -7,7 +7,9 @@ plugins {
 android {
     namespace = "com.example.data"
     compileSdk = 34
-
+    buildFeatures {
+        buildConfig = true
+    }
     defaultConfig {
         minSdk = 24
 
@@ -31,6 +33,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    defaultConfig {
+        buildConfigField("String", "SERVER_URL", project.findProperty("SERVER_URL") as String? ?: "")
+    }
 }
 
 dependencies {
@@ -45,4 +50,6 @@ dependencies {
     // Dagger Hilt
     implementation(libs.dagger.hilt.android)
     kapt(libs.dagger.hilt.compiler)
+    //socket
+    implementation(libs.socket.io.client)
 }
