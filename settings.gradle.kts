@@ -19,7 +19,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Compose with Sokect"
+rootProject.name = "Compose with Socket"
 include(":app")
 include(":domain")
 include(":data")
