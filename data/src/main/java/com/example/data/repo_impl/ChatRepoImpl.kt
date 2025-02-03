@@ -32,6 +32,12 @@ class ChatRepoImpl @Inject constructor(
             socket.on(Socket.EVENT_CONNECT) {
                 Log.d("SocketManager", "Socket connected")
             }
+            socket.on(Socket.EVENT_CONNECT_ERROR) { args ->
+                Log.e("SocketManager", "Socket connection error: ${args.joinToString()}")
+            }
+            socket.on(Socket.EVENT_DISCONNECT) {
+                Log.d("SocketManager", "Socket disconnected")
+            }
             socket.on("message") { args ->
                 val data = args[0] as JSONObject
                 val receivedUserId = data.getString("userId")
@@ -46,12 +52,11 @@ class ChatRepoImpl @Inject constructor(
     }
 
 
-    override fun sendMessage(message: String,onReceivedMessage: (msg: ChatMessage) -> Unit) {
+    override fun sendMessage(message: String) {
         val json = JSONObject()
         json.put("userId", getCurrentUserId())
         json.put("message", message)
         socket.emit("message", json)
-        onReceivedMessage(ChatMessage(getCurrentUserId(), message))
     }
 
     override fun disconnect() {

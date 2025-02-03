@@ -3,6 +3,8 @@ package com.example.composewithsokect
 import android.content.Context
 import android.content.SharedPreferences
 import com.example.data.BuildConfig
+import com.example.data.repo_impl.ChatRepoImpl
+import com.example.domain.repo.ChatRepo
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -32,5 +34,19 @@ object AppModule {
     @Singleton
     fun provideSocket(): Socket {
         return IO.socket(BuildConfig.SERVER_URL)
+    }
+
+    @Provides
+    @Singleton
+    fun provideChatRepo(
+        sharedPreferences: SharedPreferences,
+        sharedPreferencesEditor: SharedPreferences.Editor,
+        socket: Socket
+    ): ChatRepo {
+        return ChatRepoImpl(
+            sharedPreferences,
+            sharedPreferencesEditor,
+            socket
+        )
     }
 }

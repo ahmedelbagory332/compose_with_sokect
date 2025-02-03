@@ -6,6 +6,6 @@ interface ChatRepo {
     fun getCurrentUserId(): String
     fun generateUserId(): String
     fun connect(onReceivedMessage:(msg: ChatMessage)->Unit)
-    fun sendMessage(message: String,onReceivedMessage:(msg: ChatMessage)->Unit)
+    fun sendMessage(message: String)
     fun disconnect()
 }
