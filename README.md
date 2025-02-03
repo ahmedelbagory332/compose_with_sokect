@@ -87,7 +87,14 @@ node server.js
 - Dagger-hilt to handle dependency injection
 - Co-routines to deal with threads
 
-
+## Don't forget to add these in manifest:
+```bash
+  <uses-permission android:name="android.permission.INTERNET"/>
+ <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+```
+```bash
+         android:usesCleartextTraffic="true"
+```
 
 https://github.com/user-attachments/assets/efd5541d-7652-4fd6-b879-78706d2b9f98
 
